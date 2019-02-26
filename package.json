@@ -8,6 +8,7 @@
     "mocha": "mocha 'src/**/*.test.js'",
     "lint": "eslint ."
   },
+  "keywords": ["ddos", "tcp", "udp", "flood", "cli"],
   "repository": {
     "type": "git",
     "url": "github.com/markelog/obsidio"

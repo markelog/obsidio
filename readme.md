@@ -4,7 +4,9 @@
 
 ## Install
 
-> npm install -g obsidio
+```sh
+$ npm install -g obsidio
+```
 
 ## Usage
 
