@@ -20,10 +20,10 @@ program
   try {
     await cli(program);
   } catch (error) {
-    if (error.spinner) {
-      error.spinner.fail(error.message);
+    if (error.log) {
+      error.log.fail(error.message);
     } else {
-      console.error(error.stack);
+      console.error(error.message);
     }
 
     process.exit(error.exitCode || 1);

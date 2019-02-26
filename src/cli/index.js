@@ -20,7 +20,7 @@ const attackList = require('../attacks');
  */
 module.exports = async (program) => {
   if (cluster.isMaster) {
-    masterPath(program);
+    await masterPath(program);
   } else {
     workerPath(program);
   }
@@ -138,7 +138,7 @@ function getParams(program) {
   } = program;
 
   if (program.attacks !== undefined) {
-    attacks = program.attacks.replace(/s+/g, '').split(',');
+    attacks = program.attacks.replace(/\s/g, '').split(',');
   }
 
   return {
