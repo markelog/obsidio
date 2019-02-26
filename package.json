@@ -1,0 +1,25 @@
+{
+  "name": "obsidio",
+  "version": "0.0.1",
+  "description": "ddos things",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha **/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/markelog/obsidio"
+  },
+  "author": "Oleg Gaidarenko <markelog@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint-config-sexy": "^5.0.0",
+    "mocha": "^6.0.2"
+  },
+  "dependencies": {
+    "commander": "^2.19.0",
+    "evilscan": "^1.7.5",
+    "raw-socket": "^1.6.4"
+  }
+}
