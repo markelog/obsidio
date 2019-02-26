@@ -1,6 +1,6 @@
-const { expect } = require('chai')
+const { expect } = require('chai');
 
-const dns = require('../dns')
+const dns = require('../dns');
 
 describe('dns', () => {
   it('should resolve google.com', async () => {
@@ -9,6 +9,6 @@ describe('dns', () => {
     expect(result).to.have.lengthOf.above(2);
     expect(
       result.filter(value => value.includes('::'))
-    ).to.have.lengthOf.above(0);
+    ).to.have.length(0);
   });
-})
+});

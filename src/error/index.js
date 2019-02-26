@@ -9,6 +9,7 @@ module.exports = class CLIError extends Error {
     }
 
     this.message = params.message;
+    this.log = params.log;
     this.exitCode = params.exitCode;
   }
-}
+};

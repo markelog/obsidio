@@ -7,5 +7,5 @@ module.exports = () => {
     Math.floor(Math.random() * 255) + 0,
     Math.floor(Math.random() * 255) + 0,
     Math.floor(Math.random() * 255) + 0
-  ].join('.')
-}
+  ].join('.');
+};

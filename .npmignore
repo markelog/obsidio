@@ -1,0 +1,3 @@
+**/*.test.js
+.eslintrc.js
+.travis.yml

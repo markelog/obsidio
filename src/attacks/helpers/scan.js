@@ -1,11 +1,12 @@
-
+const { isIPv4 } = require('net');
 const Evilscan = require('evilscan');
 
 /**
+ * Scan for open ports
  * @param {string} ip
  * @param {string} ports
  */
-function scan(ip, ports) {
+function scanner(ip, ports) {
 
   // Evilscan has option like "ip" and
   // can accept DNS address as target, but they both buggy :/
@@ -16,15 +17,20 @@ function scan(ip, ports) {
     banner: false
   };
   return new Promise((resolve, reject) => {
-    new Evilscan(options, (err, scan) => {
+    new Evilscan(options, (createError, scan) => {
+      if (createError !== null) {
+        reject(createError);
+        return;
+      }
+
       const result = [];
 
       scan.on('result', (data) => {
         result.push(data);
       });
 
-      scan.on('error', (err) => {
-        reject(err);
+      scan.on('error', (error) => {
+        reject(error);
       });
 
       scan.on('done', () => {
@@ -33,24 +39,21 @@ function scan(ip, ports) {
 
       scan.run();
     });
-  })
+  });
 }
-
 
 /**
  * @param {array[string]} ips
  * @param {string} [ports=0-65535]
  */
 module.exports = async (ips, ports = '0-65535') => {
-  const promises = ips.filter((ip) => {
 
-    // Add support for IPv6
-    return ip.includes('::') === false;
-  }).map(ip => scan(ip, ports));
+  // TODO: Add support for IPv6
+  const promises = ips.filter(isIPv4).map(ip => scanner(ip, ports));
 
   const results = await Promise.all(promises);
 
   return results.reduce((acc, result) => {
     return acc.concat(result);
-  }, [])
-}
+  }, []);
+};

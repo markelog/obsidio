@@ -1,14 +1,14 @@
-const {expect} = require('chai')
+const { expect } = require('chai');
 
-const scanner = require('.');
-const dns = require('../dns');
+const scan = require('./scan');
+const dns = require('../../dns');
 
-describe('scanner', () => {
-  it('should scan google.com', async function() {
+describe('scan', () => {
+  it('should scan google.com', async function () {
     this.timeout(5000);
     const ips = await dns('google.com');
 
-    const result = await scanner(ips, '80-81');
+    const result = await scan(ips, '80-81');
 
     expect(result).to.have.length.above(0);
 
@@ -21,6 +21,4 @@ describe('scanner', () => {
     expect(result[0].status).to.have.equal('open');
   });
 });
-
-
 

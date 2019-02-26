@@ -1,14 +1,19 @@
 {
   "name": "obsidio",
   "version": "0.0.1",
-  "description": "ddos things",
+  "description": "CLI for TCP and UDP flood attacks",
   "main": "index.js",
   "scripts": {
-    "test": "mocha **/*.test.js"
+    "test": "npm run lint && npm run mocha",
+    "mocha": "mocha 'src/**/*.test.js'",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
     "url": "github.com/markelog/obsidio"
+  },
+  "bin": {
+    "obsidio": "./bin/obsidio"
   },
   "author": "Oleg Gaidarenko <markelog@gmail.com>",
   "license": "MIT",
@@ -20,6 +25,7 @@
   "dependencies": {
     "commander": "^2.19.0",
     "evilscan": "^1.7.5",
+    "ora": "^3.1.0",
     "raw-socket": "^1.6.4"
   }
 }

@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+const program = require('commander');
+
+const cli = require('../src/cli');
+
+program
+  .version(require('../package.json').version)
+  .usage('[options] <address>')
+  .description('TCP and UDP DDoS')
+  .option('-p, --ports <ports>', 'ports to attack, range, individual - 80,81, 80-443 - only applicable for tcp attack')
+  .option('-a, --attacks <attacks>', 'types of attack - tcp and udp (--attacks=tcp,udp), tcp is a default one')
+  .parse(process.argv);
+
+(async () => {
+  try {
+    await cli(program);
+  } catch (error) {
+    if (error.spinner) {
+      error.spinner.fail(error.message);
+    } else {
+      console.error(error.stack);
+    }
+
+    process.exit(error.exitCode || 1);
+  }
+})();
