@@ -26,6 +26,10 @@ module.exports = {
    * Initiate TCP Flood
    */
   attack(report) {
+    if (report.length === 0) {
+      throw new Error('Do not see any open ports for TCP flood attack :(');
+    }
+
     // Create a raw socket using TCP
     const socket = raw.createSocket({
       protocol: raw.Protocol.TCP
