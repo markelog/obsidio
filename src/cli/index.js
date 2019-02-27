@@ -16,7 +16,7 @@ const attackList = require('../attacks');
 
 const cpus = os.cpus().length;
 
-// Max requests in one event-loop
+// Max requests in one event-loop turn
 const max = 65535 / cpus;
 
 /**
