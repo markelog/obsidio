@@ -14,6 +14,11 @@ const CLIError = require('../error');
 const getRandom = require('../get-random');
 const attackList = require('../attacks');
 
+const cpus = os.cpus().length;
+
+// Max requests in one event-loop
+const max = 65535 / cpus;
+
 /**
  * CLI handler
  * @param {object} program
@@ -41,7 +46,6 @@ async function masterPath(program) {
 
   validate(params, log);
   const ips = await resolveDoman(target, log);
-  const cpus = os.cpus().length;
 
   log.start('preparing');
   const options = await prepare(attacks, ips, ports);
@@ -59,9 +63,6 @@ async function masterPath(program) {
  */
 function workerPath(program) {
   const { attacks } = getParams(program);
-
-  const cpus = os.cpus().length;
-  const max = 65535 / cpus;
 
   function go(options) {
     for (let i = 0; i < max; i++) {
