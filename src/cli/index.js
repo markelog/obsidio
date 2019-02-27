@@ -15,7 +15,7 @@ const getRandom = require('../get-random');
 const attackList = require('../attacks');
 
 const cpus = os.cpus().length;
-const availablePorts = 65535
+const availablePorts = 65535;
 
 // Max requests in one event-loop turn
 const maxPortsPerCPU = availablePorts / cpus;
