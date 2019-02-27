@@ -15,9 +15,10 @@ const getRandom = require('../get-random');
 const attackList = require('../attacks');
 
 const cpus = os.cpus().length;
+const availablePorts = 65535
 
 // Max requests in one event-loop turn
-const max = 65535 / cpus;
+const maxPortsPerCPU = availablePorts / cpus;
 
 /**
  * CLI handler
@@ -65,7 +66,7 @@ function workerPath(program) {
   const { attacks } = getParams(program);
 
   function go(options) {
-    for (let i = 0; i < max; i++) {
+    for (let i = 0; i < maxPortsPerCPU; i++) {
       const name = attacks[getRandom(0, attacks.length - 1)];
 
       attackList[name].attack(options[name]);
